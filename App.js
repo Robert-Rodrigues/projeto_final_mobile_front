@@ -1,22 +1,26 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-import { Container, Header, Content, Button, Text } from 'native-base';
 import TelaInicial from './screens/TelaInicial';
 import TelaSecundaria from './screens/TelaSecundaria';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 const AppNavigator = createStackNavigator(
   {
     TelaInicial: {
       screen: TelaInicial,
       navigationOptions: {
-        title: 'Tela Inicial',
+        title: 'MyCircle',
+        headerShown: true,
+        headerTitleAlign: 'center',
       },
     },
     TelaSecundaria: {
       screen: TelaSecundaria,
       navigationOptions: {
-        title: 'Tela Secundária',
+        title: 'Perfil',
+        headerShown: true,
+        headerTitleAlign: 'center',
       },
     },
   },
@@ -24,7 +28,7 @@ const AppNavigator = createStackNavigator(
     initialRouteName: 'TelaInicial',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: '#6750a4',
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -34,8 +38,16 @@ const AppNavigator = createStackNavigator(
   }
 );
 
+const theme = {
+  ...DefaultTheme,
+};
+
 const AppContainer = createAppContainer(AppNavigator);
 
 export default function App() {
-  return <AppContainer />;
+  return (
+    <PaperProvider theme={theme}>
+      <AppContainer />
+    </PaperProvider>
+  );
 }
